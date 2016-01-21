@@ -1,4 +1,4 @@
-NOTES for installing ISCE 2.0.0 (https://winsar.unavco.org/isce.html)
+NOTES for installing ISCE 2.0.0 on Ubuntu 14 (https://winsar.unavco.org/isce.html)
 =================================================
 
 Before beginning: A list of ubuntu packages that need to be installed (if they aren't already)
@@ -10,6 +10,7 @@ wget https://winsar.unavco.org/software/ISCE/isce-2.0.0.bz2
 bunzip2 isce-2.0.0.bz2
 mv isce-2.0.0 isce-2.0.0.tar
 tar -xzf isce-2.0.0.tar
+cd ./isce-2.0.0/setup
 ./install.sh -i NONE
 NOTE: apparently needs to be run with python2 active even though this version of isce
 
