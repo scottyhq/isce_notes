@@ -1,19 +1,22 @@
-# Notes for installing ISCE 2.0.0 (https://winsar.unavco.org/isce.html)
-(on Ubuntu 14 )
+# Notes for installing ISCE 2.0.0 
+###https://winsar.unavco.org/isce.html
+###(on Ubuntu 14 )
 
 ## Installing single version from scratch:
 
 1) A list of ubuntu packages that need to be installed (if they aren't already)
 ```
-apt-get install scons libgmp-dev libmpfr-dev libmpc-dev libc6-dev-i386
+apt-get install libgmp-dev libmpfr-dev libmpc-dev libc6-dev-i386
 ```
 
 2) ISCE requires python2 to install and python3 to run. Use conda python installations for this:
 ```
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh
+
 conda env create -f isce-install.yml
-conda env create -f isce.yml
+conda env create -f scons.yml
+source activate scons
 ```
 
 3) Download, untar ISCE and generate installation parameter file
@@ -52,6 +55,8 @@ su
 cd /home/scott/Software/isce-2.0.0
 export PYTHONPATH=/home/scott/Software/isce-2.0.0/configuration
 export SCONS_CONFIG_DIR=/home/scott/.isce
+
+source activate scons
 scons install
 ```
 
@@ -85,6 +90,8 @@ su
 cd /home/scott/Software/isce-2.0.0_201506
 export PYTHONPATH=/home/scott/Software/isce-2.0.0_201506/configuration
 export SCONS_CONFIG_DIR=/home/scott/.isce
+
+source activate scons
 scons install
 ```
 
