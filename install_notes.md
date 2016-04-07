@@ -1,25 +1,27 @@
-# Notes for installing ISCE 2.0.0 
+# Notes for installing ISCE 2.0.0  (on Ubuntu 14 )
 ###https://winsar.unavco.org/isce.html
-###(on Ubuntu 14 )
 
-## Installing single version from scratch:
+## Installing single version from scratch
 
-1) A list of ubuntu packages that need to be installed (if they aren't already)
+
+1) A list of ubuntu packages that need to be installed (if they aren't already):
 ```
 apt-get install libgmp-dev libmpfr-dev libmpc-dev libc6-dev-i386
 ```
 
-2) ISCE requires python2 to install and python3 to run. Use conda python installations for this:
+
+2) ISCE requires Python2 to install and Python3 to run. Use Anaconda Python installations for this:
 ```
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh
 
-conda env create -f isce-install.yml
+conda env create -f isce.yml
 conda env create -f scons.yml
 source activate scons
 ```
 
-3) Download, untar ISCE and generate installation parameter file
+
+3) Download ISCE and generate installation parameter file:
 ```
 wget https://winsar.unavco.org/software/ISCE/isce-2.0.0.bz2
 bunzip2 isce-2.0.0.bz2
@@ -29,7 +31,8 @@ cd ./isce-2.0.0/setup
 ./install.sh -i NONE
 ```
 
-4) Update ISCE configuration file (here is mine):
+
+4) Update ISCE configuration file (here is mine as a template):
 `vi ~/.isce/SConfigISCE`
 ```
 PRJ_SCONS_BUILD=/home/scott/Software/isce-2.0.0/build
@@ -49,6 +52,7 @@ MOTIFINCPATH = /usr/include/Xm
 X11INCPATH = /usr/include/X11   
 ```
 
+
 4) Run install script for just ISCE (run as root to install to `/usr/local`)
 ```
 su 
@@ -60,7 +64,7 @@ source activate scons
 scons install
 ```
 
-5) Create an alias in .bashrc to activate that version of python 3 whenever you want to run isce
+5) Create an alias in `.bashrc` to activate Python3 whenever you want to run isce
 `alias start_isce="source activate isce; source ~/.isce/.isceenv"`
 Where `.isceenv` contains:
 ```
@@ -75,7 +79,10 @@ alias start_isce="source activate isce; source ~/.isce/.isceenv"
 insarApp.py --steps
 ```
 
-## Installing multiple versions / Development snapshots
+
+## Installing multiple versions / development snapshots
+
+
 1) Change the SConfigISCE file
 ```
 cp ~/.isce/SConfigISCE ~/.isce/SConfigISCE_2.0.0
@@ -83,6 +90,7 @@ vi ~/.isce/SConfigISCE
 PRJ_SCONS_BUILD=/home/scott/Software/isce-2.0.0_201506/build
 PRJ_SCONS_INSTALL=/usr/local/isce-2.0.0_201506
 ```
+
 
 2) Install new version
 ```
@@ -95,6 +103,8 @@ source activate scons
 scons install
 ```
 
+
+3) Change link for whichever version you want to run
 *NOTE* that `/usr/local/isce` is a soft link to `/usr/local/isce-2.0.0`, so if you want to run a different version of isce, install the same way as above, but change the link to reflect the most recent version:
 
 `sudo ln -s /usr/local/isce-2.0.0_201506 /usr/local/isce`
