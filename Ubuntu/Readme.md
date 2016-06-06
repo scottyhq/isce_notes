@@ -53,7 +53,7 @@ X11INCPATH = /usr/include/X11
 ```
 
 
-4) Run install script for just ISCE (run as root to install to `/usr/local`)
+4) Install ISCE with scons (example as root to install to `/usr/local`)
 ```
 su 
 cd /home/scott/Software/isce-2.0.0

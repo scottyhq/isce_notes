@@ -1,0 +1,8 @@
+ecmwf_grib
+ffmpeg
+pygrib
+pyhdf
+pykdtree
+pykml
+pyresample
+pywavelets
