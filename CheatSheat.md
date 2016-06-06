@@ -2,32 +2,23 @@
 
 A collection of common and helpful commands using ISCE, GDAL, GMT, and Python
 
-## Command Line
-
-### Put separate geocoded phase files on same grid (with GDAL + GMT)
-```
-isce2gis.py envi -i date1_date2_filt_topophase.unw.geo
-isce2gis.py envi -i date3_date4_filt_topophase.unw.geo
-gdal_translate -of GMT -b 2 date1_date2_filt_topophase.unw.geo raster1.grd
-gdal_translate -of GMT -b 2 date3_date4_filt_topophase.unw.geo raster2.grd
-grdcut raster2.grd -Rraster1.grd -Graster2_regrid.grd -N
-```
 
 ### Save unwrapped phase as single band geotiff with control over colobar
 ```
 isce2geotiff.py -i filt_topophase.unw.geo -o filt_topophase.unw.geo.tif -b 2 -c -10 10
 ```
 
-### Resample ground pixel resolution to 90m 
-(Note: example for C-band Sentinel-1A Wavelength 0.555 cm)
-```
-gdal_calc.py -A filt_topophase.unw.geo.tif --A_band=2 --calc="A*0.05546576/12.5663706" --outfile=filt_topophase.unw_m.geo  --format=ENVI --NoDataValue=-9999 --overwrite
-```
-
 ### Create kmz to view in Google Earth 
 (Note: Google Earth Pro is now free, and can open geotifs directly, so do not really need this...)
 ```
 gdal_translate -of KMLSUPEROVERLAY filt_topophase.unw.geo.tif filt_topophase.unw.geo.kmz
+```
+
+### Resample ground pixel resolution to 90m
+(Note: example for C-band Sentinel-1A Wavelength 0.555 cm)
+```
+isce2gis.py vrt -i los.rdr.geo
+gdal_calc.py -A filt_topophase.unw.geo.vrt --A_band=2 --calc="A*0.05546576/12.5663706" --outfile=filt_topophase.unw_m.geo  --format=ENVI --NoDataValue=-9999 --overwrite
 ```
 
 ### Help on particular ISCE component
@@ -89,6 +80,19 @@ where snaphu.xml has:
 ```
 gdalwarp -of ENVI -ot CFloat32 -srcnodata 0 -dstnodata 0 20160322_20160415_*/merged/*filt_topophase.flat.geo.vrt filt_topophase_merged.flat.geo.vrt
 ```
+
+### Put separate geocoded phase files on same grid (with GDAL + GMT)
+```
+isce2gis.py envi -i date1_date2_filt_topophase.unw.geo
+isce2gis.py envi -i date3_date4_filt_topophase.unw.geo
+gdal_translate -of GMT -b 2 date1_date2_filt_topophase.unw.geo raster1.grd
+gdal_translate -of GMT -b 2 date3_date4_filt_topophase.unw.geo raster2.grd
+grdcut raster2.grd -Rraster1.grd -Graster2_regrid.grd -N
+```
+
+
+
+
 
 ## Python Module
 
