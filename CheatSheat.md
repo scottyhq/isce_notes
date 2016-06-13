@@ -14,7 +14,7 @@ isce2geotiff.py -i filt_topophase.unw.geo -o filt_topophase.unw.geo.tif -b 2 -c 
 gdal_translate -of KMLSUPEROVERLAY filt_topophase.unw.geo.tif filt_topophase.unw.geo.kmz
 ```
 
-### Resample ground pixel resolution to 90m
+### Convert unwrapped radians to displacements [cm]
 (Note: example for C-band Sentinel-1A Wavelength 0.555 cm)
 ```
 isce2gis.py vrt -i los.rdr.geo
@@ -31,10 +31,6 @@ iscehelp.py -t Sensor -a sensor=SENTINEL1A
 looks.py -i filt_topophase.flat -r 4 -a 4 -o filt_topophase.flat.4lks 
 ```
 
-### Convert DEM to ISCE format
-```
-
-```
 
 ### Get quick stats on an image
 For example mean incidence and heading angles. Band 1 is incidence (radar los to surface normal), Band 2 is heading (positive clockwise from due east):
@@ -65,16 +61,7 @@ where topApp_geocodeonly.xml has:
 ```
 
 
-### Unwrap with Snaphu
-```
-insarApp.py --dostep=unwrap snaphu.xml
-```
-where snaphu.xml has:
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<insarApp>
-<insarApp>
-```
+### Unwrap specific file with Snaphu
 
 ### Merge wrapped, geocoded, Sentinel-IW subswaths
 ```
