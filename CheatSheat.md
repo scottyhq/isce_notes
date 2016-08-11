@@ -104,7 +104,13 @@ nv      0   0   0   0
 ## Python Module
 
 #### Load Processing information from PICKLE (when running insarApp.py with --steps)
-```
+```python
+import isce
+import pickle
+with open('PICKLE/updatepreprocinfo', 'rb') as f:
+    insar = pickle.load(f)
+# insar is a dictionary in this case:
+insar['sensor']
 ``` 
 
 #### Plot array in map view and profile
