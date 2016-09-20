@@ -1,6 +1,6 @@
-# Notes for installing ISCE (on Mac OSX 10.11.5 )
+# Notes for installing ISCE_201609 (on Mac OSX 10.11.5 )
 ###https://winsar.unavco.org/isce.html
-###updated June 2016
+###updated 09/2016
 
 ## Installing single version from scratch
 
