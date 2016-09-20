@@ -19,7 +19,6 @@ bash Miniconda3-latest-Linux-x86_64.sh
 
 conda env create -f isce_201609.yml
 conda env create -f scons.yml
-source activate scons
 ```
 
 
