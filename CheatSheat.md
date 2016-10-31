@@ -43,11 +43,6 @@ gdalinfo -stats los.rdr.geo.vrt
 
 #### Geocode File
 ```
-isce2gis.py vrt -i filt_topophase.flat --lat lat.rdr --lon lon.rdr 
-```
-
-Alternatively, run single step of main processing script with xml input:
-```
 topsApp.py —-dostep=geocode topsApp_geocodeonly.xml
 ```
 
