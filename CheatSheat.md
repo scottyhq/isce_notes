@@ -24,7 +24,7 @@ gdal_calc.py -A filt_topophase.unw.geo.vrt --A_band=2 --calc="A*0.05546576/12.56
 
 #### Help on particular ISCE component
 ```
-iscehelp.py -t Sensor -a sensor=SENTINEL1A
+iscehelp.py -t Sensor -a sensor=SENTINEL1
 ```
 
 #### Look down an ISCE file
