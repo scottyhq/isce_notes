@@ -1,6 +1,7 @@
 # ISCE/Python Cheat Sheet
 
-A collection of common and helpful commands using ISCE, GDAL, GMT, and Python
+A collection of common and helpful commands using ISCE, GDAL, Python
+Tested with ISCE version 2 (20160908), mostly with outputs from topsApp.py
 
 ## Command Line
 
@@ -18,9 +19,16 @@ gdal_translate -of KMLSUPEROVERLAY filt_topophase.unw.geo.tif filt_topophase.unw
 #### Convert unwrapped radians to displacements [cm]
 (Note: example for C-band Sentinel-1A Wavelength 0.555 cm)
 ```
-isce2gis.py vrt -i los.rdr.geo
 gdal_calc.py -A filt_topophase.unw.geo.vrt --A_band=2 --calc="A*0.05546576/12.5663706" --outfile=filt_topophase.unw_m.geo  --format=ENVI --NoDataValue=-9999 --overwrite
 ```
+
+#### Convert displacement file to UTM coordinates for modeling
+if you are unsure of the UTM zone, here is a nice utility: http://www.geoplaner.com/ 
+and EPSG codes can be found here: http://www.spatialreference.org/
+```
+gdalwarp -of VRT -t_srs EPSG:32718 filt_topophase.unw_m.geo filt_topophase.unw_m.utm
+```
+
 
 #### Help on particular ISCE component
 ```
@@ -31,7 +39,6 @@ iscehelp.py -t Sensor -a sensor=SENTINEL1
 ```
 looks.py -i filt_topophase.flat -r 4 -a 4 -o filt_topophase.flat.4lks 
 ```
-
 
 #### Get quick stats on an image
 For example mean incidence and heading angles. Band 1 is incidence (radar los to surface normal), Band 2 is heading (positive clockwise from due east):
@@ -46,7 +53,7 @@ gdalinfo -stats los.rdr.geo.vrt
 topsApp.py —-dostep=geocode topsApp_geocodeonly.xml
 ```
 
-where topApp_geocodeonly.xml has:
+where topApps_geocodeonly.xml has:
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <topsApp>
@@ -66,13 +73,11 @@ where topApp_geocodeonly.xml has:
 gdalwarp -of ENVI -ot CFloat32 -srcnodata 0 -dstnodata 0 20160322_20160415_*/merged/*filt_topophase.flat.geo.vrt filt_topophase_merged.flat.geo.vrt
 ```
 
-#### Put separate geocoded phase files on same grid (with GDAL + GMT)
+#### Put separate geocoded phase files on same grid (with GDAL)
+note image size (-ts 450 450) can be determined from `gdalinfo filt_topophase.unw.8alks_8rlks.geo.vrt`
 ```
-isce2gis.py envi -i date1_date2_filt_topophase.unw.geo
-isce2gis.py envi -i date3_date4_filt_topophase.unw.geo
-gdal_translate -of GMT -b 2 date1_date2_filt_topophase.unw.geo raster1.grd
-gdal_translate -of GMT -b 2 date3_date4_filt_topophase.unw.geo raster2.grd
-grdcut raster2.grd -Rraster1.grd -Graster2_regrid.grd -N
+gdaltindex clipper.shp filt_topophase.unw.8alks_8rlks.geo.vrt
+gdalwarp -ts 450 450 -cutline clipper.shp -crop_to_cutline /dems/demLat_S04_N12_Lon_W081_W070.dem.wgs84.vrt dem.tif
 ```
 
 #### Extract wrapped phase from complex-valued files
