@@ -5,6 +5,12 @@ Tested with ISCE version 2 (20160908), mostly with outputs from topsApp.py
 
 ## Command Line
 
+#### Use gdal tools on zipped Sentinel1 files
+```
+export FILE=S1B_IW_SLC__1SDV_20170204T160912_20170204T160940_004152_0072F4_9D51
+gdalinfo /vsizip/${FILE}.zip/${FILE}.SAFE
+```
+
 #### Save unwrapped phase as single band geotiff with control over colorbar
 ```
 isce2geotiff.py -i filt_topophase.unw.geo -o filt_topophase.unw.geo.tif -b 2 -c -10 10
@@ -138,6 +144,5 @@ allow-overwrite=false
 auto-file-renaming=false
 always-resume=true
 ```
-
 
 
