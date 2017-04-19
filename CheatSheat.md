@@ -126,6 +126,11 @@ insar['sensor']
 
 ## Other stuff
 
+#### Download specific file from ASF 
+```
+wget https://datapool.asf.alaska.edu/SLC/SA/S1A_IW_SLC__1SSV_20141024T160957_20141024T161028_002973_003616_3171.zip
+```
+
 #### Download All Sentinel-1A SLC products for a particular point and orbit from ASF
 ```
 export LAT=1.22
