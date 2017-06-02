@@ -28,8 +28,8 @@ curl https://api.daac.asf.alaska.edu/services/search/param?intersectsWith=$POLYG
 
 ## 3) Download all available IW SLCS 
 first create a configuration file for aria2 download program
-/home/CHANGE/.aria2/asf.conf 
-'''
+`/home/CHANGE/.aria2/asf.conf`
+```
 http-user=CHANGE
 http-passwd=CHANGE
 
@@ -39,10 +39,10 @@ check-certificate=false
 allow-overwrite=false
 auto-file-renaming=false
 always-resume=true 
-'''
+```
 
 for a particular track/relative Orbit modify and run bash script below
-'''
+```
 #!/bin/bash
 
 export ORBIT=106
@@ -58,42 +58,42 @@ aria2c --http-auth-challenge=true --conf-path=/home/mpguest/.aria2/asf.conf  que
 curl https://api.daac.asf.alaska.edu/services/search/param?intersectsWith=$POLYGON\&platform=Sentinel-1B\&processingLevel=SLC\&beamMode=IW\&relativeOrbit=$ORBIT\&output=metalink > query$ORBIT\_S1B.metalink 
 
 aria2c --http-auth-challenge=true --conf-path=/home/mpguest/.aria2/asf.conf  query$ORBIT\_S1B.metalink 
-'''
+```
 
 ## Download SRTM30m 
 with SNWE bounds from full IW swath range rounded to nearest integer. The command below will create the dem file needed for processing: 
-'''
+```
 dem.py -c -b 41 44 -78 -74 
 fixImageXml.py -f -i demLat_N41_N44_Lon_W078_W074.dem.wgs84
-'''
+```
 
 ## Download Sentinel-1 Instrument calibration files
 run the following bash script
-'''
+```
 #!/bin/bash
 URL=https://s1qc.asf.alaska.edu/aux_cal
 cd s1_auxcal
 wget -r -l2 -nc -nd -np -nH -A SAFE $URL 
-'''
+```
 
 ## Download all Sentinel-1 precise orbits 
 script below does not re-download existing files
-'''
+```
 #!/bin/bash
 URL=https://s1qc.asf.alaska.edu/aux_poeorb/
 cd ./s1_poeorb
 wget -r -l2 -nc -nd -np -nH -A EOF $URL
-'''
+```
 
 
 ## Prepare batch interferogram directories
-The following will only process bursts that intersect the polygon region of interest and geocode each interferogram to matching grids witht he polygon extents. If you know you only want a specific subswath,for example IW2, use '-n 2'. To process every other pair (e.g. 24 day)use '-s 2'
-'''
+The following will only process bursts that intersect the polygon region of interest and geocode each interferogram to matching grids with the polygon extents. If you know you only want a specific subswath, for example IW2, use `-n 2`. To process every other pair (e.g. 24 day) use `-s 2`
+```
 prep_sequential_processing.py -p ./A106 -s 1 -d  -r 42.515 42.382 -76.592 -76.413 -g 42.515 42.382 -76.592 -76.413
-'''
+```
 
 ## 4) Process all sequential pairs (e.g. 12 day)
 Warning... this will take a while. the runall.py script is very basic, processing one at a time in chronological order to not use up all computer resources.
-'''
+```
 runall.py
-'''
+```
