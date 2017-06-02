@@ -43,8 +43,8 @@ dependencies:
 - pickleshare=0.5=py27_0
 - pip=8.1.1=py27_1
 - pixman=0.32.6=0
-- proj.4=4.9.1=0
-- proj4=4.9.1=0
+#- proj.4=4.9.1=0
+#- proj4=4.9.1=0
 - ptyprocess=0.5=py27_0
 - pycairo=1.10.0=py27_0
 - pygrib=2.0.1=py27_1
@@ -52,7 +52,7 @@ dependencies:
 - pykdtree=1.1.1=np111py27_0
 - pykml=0.1.0=py27_0
 - pyparsing=2.1.1=py27_0
-- pyproj=1.9.4=py27_1
+#- pyproj=1.9.4=py27_1
 - pyqt=4.11.4=py27_1
 - pyresample=1.1.6=py27_0
 - python=2.7.11=0
