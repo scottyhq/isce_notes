@@ -28,6 +28,11 @@ gdal_translate -of KMLSUPEROVERLAY filt_topophase.unw.geo.tif filt_topophase.unw
 gdal_calc.py -A filt_topophase.unw.geo.vrt --A_band=2 --calc="A*0.05546576/12.5663706" --outfile=filt_topophase.unw_m.geo  --format=ENVI --NoDataValue=-9999 --overwrite
 ```
 
+#### East-North-Up (ENU) Cartesian vector mapping to radar Line-Of-Sight (LOS)
+```
+imageMath.py --eval='sin(rad(a_0))*cos(rad(a_1+90));sin(rad(a_0)) * sin(rad(a_1+90));cos(rad(a_0))' --a=los.rdr.geo -t FLOAT -s BIL -o enu.rdr.geo
+```
+
 #### Convert displacement file to UTM coordinates for modeling
 if you are unsure of the UTM zone, here is a nice utility: http://www.geoplaner.com/ 
 and EPSG codes can be found here: http://www.spatialreference.org/
