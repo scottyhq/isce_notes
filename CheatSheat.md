@@ -22,8 +22,8 @@ isce2geotiff.py -i filt_topophase.unw.geo -o filt_topophase.unw.geo.tif -b 2 -c 
 gdal_translate -of KMLSUPEROVERLAY filt_topophase.unw.geo.tif filt_topophase.unw.geo.kmz
 ```
 
-#### Convert unwrapped radians to displacements [cm]
-(Note: example for C-band Sentinel-1A Wavelength 0.555 cm)
+#### Convert unwrapped radians to displacements [m]
+(Note: example for C-band Sentinel-1A Wavelength 5.55 cm)
 ```
 gdal_calc.py -A filt_topophase.unw.geo.vrt --A_band=2 --calc="A*0.05546576/12.5663706" --outfile=filt_topophase.unw_m.geo  --format=ENVI --NoDataValue=-9999 --overwrite
 ```
