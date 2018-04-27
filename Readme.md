@@ -8,7 +8,7 @@
 
 * [Cheat sheat](CheatSheat.md) for working with ISCE also in this repository
 
-* Looking for SAR data? [See here](archives)
+* Looking for SAR data? [See here](Archives)
 
 * [Notes](Ubuntu/Readme_GIAnT.md) on installing JPL Earthdef software (e.g. GIAnT
 )
