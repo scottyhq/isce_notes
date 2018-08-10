@@ -1,11 +1,13 @@
 # Notes for installing ISCE 2.2.0 (on Ubuntu 18.04 LTS)
-###https://winsar.unavco.org/isce.html
+### https://winsar.unavco.org/isce.html
 
 ### Last update 07/2018
 
 ## NOTE: this is a simplified instruction set for installing [ISCE 2.2.0](https://winsar.unavco.org/software/isce) on [Ubuntu 18.04 LTS](https://wiki.ubuntu.com/BionicBeaver/ReleaseNotes?_ga=2.87047249.813606057.1533187033-1771092189.1532981728) 
 
-[Notes](Readme_201609.md) on installing previous versions used the [conda](https://conda.io/docs/) package manager for custom Python environments. The drawback of that is that it's easy to end up with errors if some components of ISCE are build from source against system shared libraries versus the conda libraries (see [this ISCE user forum post](http://earthdef.caltech.edu/boards/4/topics/1925)). Ultimately problems arise due to incompatibilites with the compiler versions - so everything was likely to work if your OS and conda are using the same gcc compiler version. See some notes [here](https://conda.io/docs/user-guide/tasks/build-packages/compiler-tools.html) about conda compilers. Check out other installation notes [here](https://github.com/piyushrpt/oldLinuxSetup). One solution is either use entirely system installed dependencies or install all dependencies with conda, and the following notes are for installing ISCE without conda:
+[Notes](Readme_201609.md) on installing previous versions used the [conda](https://conda.io/docs/) package manager for custom Python environments. The drawback with conda is that you can run into errors if conda packages and system libraries are built against different compiler versions  (see [this ISCE user forum post](http://earthdef.caltech.edu/boards/4/topics/1925)). See these notes [here](https://conda.io/docs/user-guide/tasks/build-packages/compiler-tools.html) about conda compilers. 
+
+One solution is either use entirely system installed dependencies or install all dependencies with conda, and the following notes are for installing ISCE without conda. Check out other installation notes [here](https://github.com/piyushrpt/oldLinuxSetup). Or consider using [Docker](../Docker)!
 
 
 1) A list of Ubuntu packages that need to be installed (if they aren't already):
