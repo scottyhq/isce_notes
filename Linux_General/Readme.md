@@ -10,13 +10,12 @@ of the following situations:
 
 * You don't have any _root_ privileges (e.g. `su` or `sudo`) on the machine you are going to install ISCE
 * You are installing ISCE on the machine that does not have a package manager (such as Ubuntu's `apt`)
-* You don't want install ISCE using packages in your system because their versions may out of date or because of other reasons
+* You don't want install ISCE using packages in your system because their versions may be out of date or because of other reasons
 
 We will assume that you want to install ISCE in your `~/Software` directory, using all packages and compilers of your own.
 We recommend the [conda](https://conda.io/docs/) package manager for sorting all the dependencies out. 
 
-----
-# Install conda and all the prerequisites
+## Install conda and all the prerequisites
 
 Go to the [Miniconda download page](https://conda.io/miniconda.html) and download the 64-bit installer for Python 3.7,
 or you can run this on your terminal:
@@ -24,7 +23,7 @@ or you can run this on your terminal:
     wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 
 If you choose to install _anaconda_ instead of _miniconda_, later you have to set up a separate environment for `gdal`
-since some of our packages will come from the user-contributed repository. To make it simple, we use `miniconda` here
+since some of our packages will come from the user-contributed repository. To make it simple, we use _miniconda_ here
 and will only install the minimum required packages. 
 
 Run the script and choose a path to install _miniconda_, and let's say it would be installed at `~/Software/miniconda3`.
@@ -46,8 +45,7 @@ folder in _miniconda3_ into your **PATH** variable). Run the following commands 
     conda install gdal
     conda install cython
 
-----
-# Steps before installing ISCE
+## Steps before installing ISCE
 
 Firstly go to where `cython` is and make a soft link to cython3:
 
@@ -73,8 +71,7 @@ on your machine.
     ln -s /usr/lib64/libm.so libm.so
     ln -s /usr/lib64/libpthread.so libpthread.so
 
-----
-# Make the configuration file for installing ISCE
+## Make the configuration file for installing ISCE
 
 Download ISCE from the website, extract it, and go to the extracted folder, here assuming `~/Software/isce-2.2.0`.
 
@@ -83,7 +80,7 @@ Download ISCE from the website, extract it, and go to the extracted folder, here
 
 Open `SConfigISCE` and enter the following entries:
 
-    # PRJ_SCONS_BUILD is where the temporary files are located when installing ISCE
+    # PRJ_SCONS_BUILD is where the temporary files are when installing ISCE
     PRJ_SCONS_BUILD =   ~/Software/isce-2.2.0/build
     # PRJ_SCONS_INSTALL is where the ISCE binaries and python modules can be accessed
     PRJ_SCONS_INSTALL = ~/Software/isce-2.2.0-build
@@ -106,16 +103,14 @@ Open `SConfigISCE` and enter the following entries:
     CC =      ~/Software/miniconda3/bin/gcc
     CXX =     ~/Software/miniconda3/bin/g++ 
 
-----
-# Install ISCE
+## Install ISCE
 
 As long as you set up the requirements correctly, this step should be simple:
 
     cd ~/Software/isce-2.2.0
     SCONS_CONFIG_DIR=. scons install
 
-----
-# Make ISCE searchable by your shell and Python
+## Make ISCE searchable by your shell and Python
 
 Note that in ISCE 2.2.0 there's no folder named `isce` inside the installation folder -- all the files are now directly
 under the installation folder. Therefore, to make the python command `import isce` available, you can choose one of 
