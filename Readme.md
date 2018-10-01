@@ -1,12 +1,12 @@
 # Tools for ISCE (InSAR Scientific Computing Environment)
 
-* Last Updated: 04/2018
+* Last Updated: 10/2018
 
-* [ISCE software page](https://winsar.unavco.org/isce.html) - version 2.1.0 as of 08/2017
+* [ISCE software page](https://winsar.unavco.org/software/isce) - version 2.2.0 as of 07/2018
 
 * Platform-independent installation with [Docker](Docker)
 
-* Instructions for both [OSX](OSX) or [Ubuntu](Ubuntu) in respective folders
+* Instructions for [OSX](OSX), [Ubuntu](Ubuntu), and [Linux-based systems](Linux_General) in respective folders
 
 * [Cheat sheat](CheatSheat.md) for working with ISCE also in this repository
 
