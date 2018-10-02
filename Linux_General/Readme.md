@@ -125,7 +125,7 @@ these two ways:
 The last step goes here. Open your shell configuration file (e.g. `~/.bashrc`) or create a 
 separate configuration file (e.g. `~/ISCE_CONFIG`), and add the following lines:
 
-    export ISCE_HOME="/home3/wzheng5/Software/isce-2.2.0-build"    # your installation folder
+    export ISCE_HOME="~/Software/isce-2.2.0-build"    # your installation folder
     export PYTHONPATH="$ISCE_HOME:$PYTHONPATH"        # there should be a folder named "isce" inside the newly added python path
     export PATH="$ISCE_HOME/applications:$PATH"
 
