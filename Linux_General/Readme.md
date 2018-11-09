@@ -2,18 +2,21 @@
 
 ### https://winsar.unavco.org/software/isce
 
-### Last update 10/2018
+### Last update 11/2018
 
 This note will show you how to install the latest [ISCE](https://winsar.unavco.org/software/isce) (**2.2.0**) on 
-various 64-bit, Linux-based machines, including the most popular Ubuntu. It works the best if you have either 
+various **64-bit, Linux-based machines**, including the most popular **Ubuntu**. The routines were tested on **NASA's 
+supercomputer Pleiades** and worked well. It works the best if you have either 
 of the following situations:
 
 * You don't have any _root_ privileges (e.g. `su` or `sudo`) on the machine you are going to install ISCE
 * You are installing ISCE on the machine that does not have a package manager (such as Ubuntu's `apt`)
-* You don't want install ISCE using packages in your system because their versions may be out of date or because of other reasons
+* You don't want to install ISCE using packages in your system because their versions may be out of date or because of other reasons
 
 We will assume that you want to install ISCE in your `~/Software` directory, using all packages and compilers of your own.
 We recommend the [conda](https://conda.io/docs/) package manager for sorting all the dependencies out. 
+
+
 
 ## Install conda and all the prerequisites
 
