@@ -1,5 +1,8 @@
 # Tools for ISCE (InSAR Scientific Computing Environment)
 
+
+* *NOTE: most of ISCE now open source! as of Feb 2019: https://github.com/isce-framework/isce2*
+
 * Last Updated: 04/2018
 
 * [ISCE software page](https://winsar.unavco.org/isce.html) - version 2.1.0 as of 08/2017
